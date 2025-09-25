@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
-import {  Heart, ShoppingCart, Filter, ChevronDown, ChevronUp, Grid, List, Search,  MessageCircle } from 'lucide-react'
+import {  Heart, ShoppingCart, Filter, ChevronDown, ChevronUp, Grid, List, Search,  MessageCircle, X } from 'lucide-react'
 import iphoneProducts from '../data/iphoneProducts' // Import the JSON data directly
 import { useCart } from '../context/CartContext'
 
@@ -19,6 +19,8 @@ export default function ProfessionalIPhonesPage() {
   const [sortBy, setSortBy] = useState('newest')
   const [viewMode, setViewMode] = useState('grid')
   const [searchTerm, setSearchTerm] = useState('')
+  const [showMobileFilters, setShowMobileFilters] = useState(false)
+  const [showMobileSearch, setShowMobileSearch] = useState(false)
   const route = useRouter()
 
   // Format price for display
@@ -36,7 +38,7 @@ export default function ProfessionalIPhonesPage() {
     return { models, variants, storages, colors }
   }
 
-  const { models, variants, storages, colors } = getFilterOptions()
+  const { models,  storages, colors } = getFilterOptions()
 
   // Filter products
   useEffect(() => {
@@ -152,25 +154,25 @@ export default function ProfessionalIPhonesPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -2 }}
-        className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
+        className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 mx-2 sm:mx-0"
       >
         {/* Product Image */}
-        <div className="relative h-64 bg-gray-50 group">
+        <div className="relative h-48 sm:h-56 md:h-64 bg-gray-50 group">
           {product.isNew && (
-            <div className="absolute top-3 left-3 bg-black text-white px-2 py-1 rounded-md text-xs font-medium z-10">
+            <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-black text-white px-2 py-1 rounded-md text-xs font-medium z-10">
               New
             </div>
           )}
-          <div className="absolute top-3 right-3 z-10">
-            <button className="p-2 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors opacity-0 group-hover:opacity-100">
-              <Heart className="w-4 h-4 text-gray-600" />
+          <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10">
+            <button className="p-1.5 sm:p-2 bg-white rounded-full shadow-sm hover:bg-gray-50 transition-colors opacity-0 group-hover:opacity-100">
+              <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-gray-600" />
             </button>
           </div>
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain p-6"
+            className="object-contain p-4 sm:p-6"
             onError={(e) => {
               e.target.src = `https://via.placeholder.com/400x300/f3f4f6/374151?text=${encodeURIComponent(product.name)}`
             }}
@@ -178,10 +180,10 @@ export default function ProfessionalIPhonesPage() {
         </div>
 
         {/* Product Info */}
-        <div className="p-4">
+        <div className="p-3 sm:p-4">
           <div className="mb-2">
-            <h3 className="text-lg font-semibold text-gray-900 truncate">{product.name}</h3>
-            {product.variant && <p className="text-sm text-gray-500">{product.variant}</p>}
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate">{product.name}</h3>
+            {product.variant && <p className="text-xs sm:text-sm text-gray-500">{product.variant}</p>}
           </div>
 
           {/* Storage Selection */}
@@ -232,7 +234,7 @@ export default function ProfessionalIPhonesPage() {
           {/* Price - UPDATED WITH FORMATTING */}
           <div className="mb-3">
             <div className="flex items-baseline space-x-2">
-              <span className="text-xl font-bold text-gray-900">
+              <span className="text-lg sm:text-xl font-bold text-gray-900">
                 {formatPrice(product.price)} DH
               </span>
               {product.originalPrice > product.price && (
@@ -248,17 +250,18 @@ export default function ProfessionalIPhonesPage() {
             <button 
               onClick={handleAddToCart}
               disabled={isAdding}
-              className="flex-1 bg-black text-white py-2 rounded-md font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 bg-black text-white py-2 px-3 rounded-md font-medium hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
             >
               {isAdding ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span>Adding...</span>
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span className="hidden sm:inline">Adding...</span>
                 </>
               ) : (
                 <>
-                  <ShoppingCart className="w-4 h-4" />
-                  <span>Add to Cart</span>
+                  <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Add to Cart</span>
+                  <span className="sm:hidden">Add</span>
                 </>
               )}
             </button>
@@ -272,7 +275,7 @@ export default function ProfessionalIPhonesPage() {
               className="bg-green-500 text-white p-2 rounded-md hover:bg-green-600 transition-colors duration-200 flex items-center justify-center"
               title="Chat on WhatsApp"
             >
-              <MessageCircle className="w-4 h-4" />
+              <MessageCircle className="w-3 h-3 sm:w-4 sm:h-4" />
             </button>
           </div>
         </div>
@@ -294,7 +297,7 @@ export default function ProfessionalIPhonesPage() {
         </button>
         
         {isExpanded && (
-          <div className="space-y-2">
+          <div className="space-y-2 max-h-48 overflow-y-auto">
             {options.map((option) => (
               <label key={`${filterType}-${option}`} className="flex items-center">
                 <input
@@ -312,12 +315,131 @@ export default function ProfessionalIPhonesPage() {
     )
   }
 
+  // Mobile Filter Modal
+  const MobileFilterModal = () => (
+    <div className={`fixed inset-0 z-50 lg:hidden ${showMobileFilters ? 'block' : 'hidden'}`}>
+      <div className="fixed inset-0 bg-black bg-opacity-50" onClick={() => setShowMobileFilters(false)}></div>
+      <div className="fixed inset-y-0 right-0 w-80 max-w-full bg-white shadow-xl">
+        <div className="flex items-center justify-between p-4 border-b">
+          <h2 className="text-lg font-semibold">Filters</h2>
+          <button
+            onClick={() => setShowMobileFilters(false)}
+            className="p-2 -mr-2"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        
+        <div className="p-4 overflow-y-auto h-full pb-20">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={clearAllFilters}
+              className="text-sm text-black hover:underline"
+            >
+              Clear all
+            </button>
+          </div>
+
+          <FilterSection
+            title="iPhone Model"
+            options={models}
+            selectedOptions={selectedModels}
+            filterType="model"
+          />
+
+          <FilterSection
+            title="Storage"
+            options={storages}
+            selectedOptions={selectedStorages}
+            filterType="storage"
+          />
+
+          <FilterSection
+            title="Color"
+            options={colors.slice(0, 10)}
+            selectedOptions={selectedColors}
+            filterType="color"
+          />
+
+          {/* Price Range */}
+          <div className="border-b border-gray-200 pb-4 mb-4">
+            <h4 className="font-medium text-gray-900 mb-3">Price Range</h4>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span>{formatPrice(priceRange[0])} DH</span>
+                <span>{formatPrice(priceRange[1])} DH</span>
+              </div>
+              <input
+                type="range"
+                min="0"
+                max="25000"
+                value={priceRange[1]}
+                onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-white border-t">
+          <button
+            onClick={() => setShowMobileFilters(false)}
+            className="w-full bg-black text-white py-3 rounded-md font-medium"
+          >
+            Apply Filters ({filteredProducts.length})
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          {/* Mobile Header */}
+          <div className="flex items-center justify-between lg:hidden">
+            <div>
+              <h1 className="text-xl font-bold text-gray-900">iPhone</h1>
+              <p className="text-xs text-gray-600">
+                {filteredProducts.length} products
+              </p>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              {/* Cart Icon */}
+              <div className="relative">
+                <button onClick={()=> route.push("/cart")} className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
+                  <ShoppingCart className="w-5 h-5" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {/* Search Toggle */}
+              <button
+                onClick={() => setShowMobileSearch(!showMobileSearch)}
+                className="p-2 text-gray-600 hover:text-gray-900"
+              >
+                <Search className="w-5 h-5" />
+              </button>
+
+              {/* Filter Toggle */}
+              <button
+                onClick={() => setShowMobileFilters(true)}
+                className="p-2 text-gray-600 hover:text-gray-900"
+              >
+                <Filter className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Header */}
+          <div className="hidden lg:flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">iPhone</h1>
               <p className="text-sm text-gray-600 mt-1">
@@ -326,7 +448,7 @@ export default function ProfessionalIPhonesPage() {
             </div>
             
             <div className="flex items-center space-x-4">
-              {/* Cart Icon with Count */}
+              {/* Cart Icon */}
               <div className="relative">
                 <button onClick={()=> route.push("/cart")} className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
                   <ShoppingCart className="w-5 h-5" />
@@ -377,12 +499,55 @@ export default function ProfessionalIPhonesPage() {
               </div>
             </div>
           </div>
+
+          {/* Mobile Search Bar */}
+          {showMobileSearch && (
+            <div className="mt-4 lg:hidden">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Mobile Sort */}
+          <div className="mt-3 lg:hidden flex items-center justify-between">
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black text-sm"
+            >
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+
+            <div className="flex bg-gray-100 rounded-md p-1">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded ${viewMode === 'grid' ? 'bg-white shadow-sm' : ''}`}
+              >
+                <Grid className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded ${viewMode === 'list' ? 'bg-white shadow-sm' : ''}`}
+              >
+                <List className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-6 flex">
-        {/* Sidebar Filters */}
-        <div className="w-64 flex-shrink-0 pr-8">
+        {/* Desktop Sidebar Filters */}
+        <div className="hidden lg:block w-64 flex-shrink-0 pr-8">
           <div className="bg-white border border-gray-200 rounded-lg p-4">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-gray-900 flex items-center">
@@ -418,7 +583,7 @@ export default function ProfessionalIPhonesPage() {
               filterType="color"
             />
 
-            {/* Price Range - UPDATED */}
+            {/* Price Range */}
             <div className="border-b border-gray-200 pb-4 mb-4">
               <h4 className="font-medium text-gray-900 mb-3">Price Range</h4>
               <div className="space-y-2">
@@ -452,9 +617,9 @@ export default function ProfessionalIPhonesPage() {
               </button>
             </div>
           ) : (
-            <div className={`grid gap-6 ${
+            <div className={`grid gap-4 ${
               viewMode === 'grid'
-                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
                 : 'grid-cols-1'
             }`}>
               {filteredProducts.map((product) => (
@@ -464,6 +629,9 @@ export default function ProfessionalIPhonesPage() {
           )}
         </div>
       </div>
+
+      {/* Mobile Filter Modal */}
+      <MobileFilterModal />
     </div>
   )
 }
