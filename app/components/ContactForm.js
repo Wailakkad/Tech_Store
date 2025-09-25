@@ -48,7 +48,7 @@ export default function ContactForm() {
           <span className="text-white text-2xl">✓</span>
         </div>
         <h3 className="text-lg font-semibold text-primary-800 mb-2">Message Sent!</h3>
-        <p className="text-primary-700">We'll get back to you soon.</p>
+        <p className="text-primary-700">We&apos;ll get back to you soon.</p>
         <button
           onClick={() => setSuccess(false)}
           className="mt-4 text-primary-600 hover:text-primary-700 font-medium"

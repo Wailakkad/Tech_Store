@@ -316,7 +316,7 @@ export default function Home() {
                     className="text-xl md:text-2xl font-light"
                     style={{ color: '#d1d5db' }}
                   >
-                    Premium devices engineered for tomorrow's innovators
+                    Premium devices engineered for tomorrow&apos;s innovators
                   </motion.p>
                 </div>
 
