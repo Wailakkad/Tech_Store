@@ -15,15 +15,16 @@ export default function ProfessionalIPhonesPage() {
   const [selectedVariants, setSelectedVariants] = useState([])
   const [selectedStorages, setSelectedStorages] = useState([])
   const [selectedColors, setSelectedColors] = useState([])
-  const [priceRange, setPriceRange] = useState([0, 1500])
+  const [priceRange, setPriceRange] = useState([0, 25000]) // Updated for Moroccan prices
   const [sortBy, setSortBy] = useState('newest')
   const [viewMode, setViewMode] = useState('grid')
   const [searchTerm, setSearchTerm] = useState('')
   const route = useRouter()
- 
 
-  // No need for useEffect to load data since it's imported directly
-  // Remove the loading useEffect
+  // Format price for display
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('fr-MA').format(price);
+  }
 
   // Get unique filter options
   const getFilterOptions = () => {
@@ -81,14 +82,12 @@ export default function ProfessionalIPhonesPage() {
 
     // Sort products
     switch (sortBy) {
-      
       case 'price-low':
         filtered.sort((a, b) => a.price - b.price)
         break
       case 'price-high':
         filtered.sort((a, b) => b.price - a.price)
         break
-     
     }
 
     setFilteredProducts(filtered)
@@ -132,7 +131,7 @@ export default function ProfessionalIPhonesPage() {
     setSelectedVariants([])
     setSelectedStorages([])
     setSelectedColors([])
-    setPriceRange([0, 1500])
+    setPriceRange([0, 25000])
     setSearchTerm('')
   }
 
@@ -185,8 +184,6 @@ export default function ProfessionalIPhonesPage() {
             {product.variant && <p className="text-sm text-gray-500">{product.variant}</p>}
           </div>
 
-         
-
           {/* Storage Selection */}
           <div className="mb-3">
             <p className="text-xs font-medium text-gray-700 mb-2">Storage:</p>
@@ -232,15 +229,15 @@ export default function ProfessionalIPhonesPage() {
             </div>
           </div>
 
-         
-
-          {/* Price */}
+          {/* Price - UPDATED WITH FORMATTING */}
           <div className="mb-3">
             <div className="flex items-baseline space-x-2">
-              <span className="text-xl font-bold text-gray-900">${product.price}</span>
+              <span className="text-xl font-bold text-gray-900">
+                {formatPrice(product.price)} DH
+              </span>
               {product.originalPrice > product.price && (
                 <span className="text-sm text-gray-500 line-through">
-                  ${product.originalPrice}
+                  {formatPrice(product.originalPrice)} DH
                 </span>
               )}
             </div>
@@ -268,7 +265,7 @@ export default function ProfessionalIPhonesPage() {
             
             <button 
               onClick={() => {
-                const message = `Hi! I'm interested in the ${product.name} (${selectedStorage}, ${selectedColor}) for ${product.price}. Can you provide more information?`
+                const message = `Hi! I'm interested in the ${product.name} (${selectedStorage}, ${selectedColor}) for ${formatPrice(product.price)} DH. Can you provide more information?`
                 const whatsappUrl = `https://wa.me/212673434731?text=${encodeURIComponent(message)}`
                 window.open(whatsappUrl, '_blank')
               }}
@@ -315,8 +312,6 @@ export default function ProfessionalIPhonesPage() {
     )
   }
 
-
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -361,10 +356,8 @@ export default function ProfessionalIPhonesPage() {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
               >
-                <option value="newest">Newest</option>
                 <option value="price-low">Price: Low to High</option>
                 <option value="price-high">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
               </select>
 
               {/* View Mode */}
@@ -411,8 +404,6 @@ export default function ProfessionalIPhonesPage() {
               filterType="model"
             />
 
-        
-
             <FilterSection
               title="Storage"
               options={storages}
@@ -427,18 +418,18 @@ export default function ProfessionalIPhonesPage() {
               filterType="color"
             />
 
-            {/* Price Range */}
+            {/* Price Range - UPDATED */}
             <div className="border-b border-gray-200 pb-4 mb-4">
               <h4 className="font-medium text-gray-900 mb-3">Price Range</h4>
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span>${priceRange[0]}</span>
-                  <span>${priceRange[1]}</span>
+                  <span>{formatPrice(priceRange[0])} DH</span>
+                  <span>{formatPrice(priceRange[1])} DH</span>
                 </div>
                 <input
                   type="range"
                   min="0"
-                  max="1500"
+                  max="25000"
                   value={priceRange[1]}
                   onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
                   className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"

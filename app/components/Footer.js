@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link'
-import { ShoppingBag, MessageCircle, Instagram, Facebook } from 'lucide-react'
+import { Smartphone, MessageCircle, Instagram, Facebook } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -13,10 +13,10 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <ShoppingBag className="w-8 h-8" style={{ color: '#ffffff' }} />
-              <span className="text-2xl font-bold" style={{ color: '#ffffff' }}>
-                Wassil
-              </span>
+               
+            <Smartphone className="w-8 h-8 text-white" />
+            <span className="text-2xl font-bold text-white">NextGen iStore</span>
+          
             </Link>
             <p className="mb-4 max-w-md" style={{ color: '#d1d5db' }}>
               Your trusted partner for premium tech products. We bring you the latest 
@@ -106,9 +106,9 @@ export default function Footer() {
               Contact
             </h3>
             <ul className="space-y-2" style={{ color: '#d1d5db' }}>
-              <li>📧 info@wassil.com</li>
-              <li>📱 +1 (555) 123-4567</li>
-              <li>📍 123 Tech Street, City</li>
+             
+              <li>📱 +212 673-434731</li>
+              <li>📍 Casablanca</li>
             </ul>
           </div>
         </div>

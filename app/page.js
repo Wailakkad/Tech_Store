@@ -98,7 +98,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link 
-                    href="/products" 
+                    href="/iphones" 
                     className="inline-block px-8 py-4 border-2 font-medium transition-all duration-300 text-lg"
                     style={{ 
                       borderColor: '#000000', 
@@ -117,28 +117,7 @@ export default function Home() {
                     Shop Now
                   </Link>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Link 
-                    href="/about" 
-                    className="inline-block px-8 py-4 border-2 font-medium transition-all duration-300 text-lg"
-                    style={{ 
-                      borderColor: '#d1d5db', 
-                      color: '#000000',
-                      backgroundColor: 'transparent'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.borderColor = '#000000';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.borderColor = '#d1d5db';
-                    }}
-                  >
-                    Learn More
-                  </Link>
-                </motion.div>
+               
               </div>
             </motion.div>
           </div>
@@ -240,7 +219,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link 
-                    href="/about" 
+                    href="/iphones" 
                     className="inline-block px-8 py-4 border-2 font-medium transition-all duration-300 text-lg"
                     style={{ 
                       borderColor: '#000000', 
@@ -256,7 +235,7 @@ export default function Home() {
                       e.target.style.color = '#000000';
                     }}
                   >
-                    Explore More
+                    Shop Now
                   </Link>
                 </motion.div>
               </motion.div>
@@ -331,7 +310,7 @@ export default function Home() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <Link
-                      href="/products"
+                      href="/iphones"
                       className="group relative inline-flex items-center px-10 py-5 font-semibold text-lg rounded-full shadow-2xl transition-all duration-300"
                       style={{ 
                         backgroundColor: '#ffffff', 
@@ -353,39 +332,7 @@ export default function Home() {
                     </Link>
                   </motion.div>
                   
-                  {/* Secondary CTA */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Link
-                      href="/explore"
-                      className="group inline-flex items-center px-8 py-4 border-2 backdrop-blur-sm font-medium text-lg rounded-full transition-all duration-300"
-                      style={{ 
-                        borderColor: '#ffffff',
-                        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                        color: '#ffffff'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#ffffff';
-                        e.target.style.color = '#000000';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-                        e.target.style.color = '#ffffff';
-                      }}
-                    >
-                      <span className="flex items-center gap-2">
-                        Explore Tech
-                        <svg className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </span>
-                    </Link>
-                  </motion.div>
+                
                 </div>
               </div>
             </div>
