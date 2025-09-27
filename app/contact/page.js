@@ -122,8 +122,8 @@ export default function ContactPage() {
                 </h1>
                 <div className="w-12 h-0.5 bg-black mb-8"></div>
                 <p className="text-lg text-gray-700 leading-relaxed font-light">
-                  We believe in the power of connection. Whether you're looking to collaborate, 
-                  need support, or simply want to share your thoughts, we're here to listen 
+                  We believe in the power of connection. Whether you&apos;re looking to collaborate, 
+                  need support, or simply want to share your thoughts, we&apos;re here to listen 
                   and help you achieve your goals.
                 </p>
               </div>
