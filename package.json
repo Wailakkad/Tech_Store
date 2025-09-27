@@ -12,6 +12,7 @@
     "framer-motion": "^12.23.22",
     "lucide-react": "^0.544.0",
     "next": "^15.6.0-canary.24",
+    "nodemailer": "^7.0.6",
     "react": "^18",
     "react-dom": "^18"
   },
