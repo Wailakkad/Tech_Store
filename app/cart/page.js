@@ -90,7 +90,7 @@ export default function CartPage() {
                   
                   <div className="text-right">
                     <p className="text-lg font-semibold text-gray-900">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {(item.price * item.quantity).toFixed(2)} DH
                     </p>
                     <button
                       onClick={() => removeFromCart(item.id, item.selectedStorage, item.selectedColor)}
@@ -108,7 +108,7 @@ export default function CartPage() {
             <div className="flex items-center justify-between">
               <span className="text-lg font-semibold text-gray-900">Total:</span>
               <span className="text-2xl font-bold text-gray-900">
-                ${getTotalPrice().toFixed(2)}
+                {getTotalPrice().toFixed(2)}DH
               </span>
             </div>
             <button className="w-full bg-black text-white py-3 rounded-md font-medium hover:bg-gray-800 transition-colors mt-4">

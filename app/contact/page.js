@@ -137,7 +137,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-black">Email</p>
-                    <p className="text-gray-600 font-light">contact@company.com</p>
+                    <p className="text-gray-600 font-light">neaxtgenistore@gmail.com</p>
                   </div>
                 </div>
                 
@@ -149,7 +149,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-black">Phone</p>
-                    <p className="text-gray-600 font-light">+212 </p>
+                    <p className="text-gray-600 font-light">+212 673-434731</p>
                   </div>
                 </div>
                 
@@ -162,7 +162,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium text-black">Location</p>
-                    <p className="text-gray-600 font-light">Paris, France</p>
+                    <p className="text-gray-600 font-light">Casablanca, Maroc</p>
                   </div>
                 </div>
               </div>
