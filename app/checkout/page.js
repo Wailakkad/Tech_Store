@@ -142,7 +142,7 @@ export default function CheckoutPage() {
               <p className="text-blue-800 text-sm">
                 <strong>Next Steps:</strong><br />
                 • We will call you at {formData.phoneNumber} within 24 hours<br />
-                • We'll confirm your order details and delivery address<br />
+                • We&apos;ll confirm your order details and delivery address<br />
                 • Payment will be arranged during the confirmation call
               </p>
             </div>
@@ -273,7 +273,7 @@ export default function CheckoutPage() {
               </button>
 
               <p className="text-sm text-gray-500 text-center">
-                * Required fields. No payment required now - we'll contact you to confirm everything.
+                * Required fields. No payment required now - we&apos;ll contact you to confirm everything.
               </p>
             </form>
           </div>
