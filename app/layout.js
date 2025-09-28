@@ -7,7 +7,7 @@ import { CartProvider } from './context/CartContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Wassil - Premium Tech Products',
+  title: 'NextGen iStore',
   description: 'Your trusted source for premium tech products including phones, cases, AirPods, and more.',
   colorScheme: 'light',
   themeColor: '#ffffff',

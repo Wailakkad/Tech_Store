@@ -2,11 +2,13 @@
 import { useCart } from '../context/CartContext'
 import Image from 'next/image'
 import { Trash2, Plus, Minus } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 export default function CartPage() {
   const { items, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart()
   const [mounted, setMounted] = useState(false)
+  const route = useRouter()
 
   // Fix hydration mismatch by only showing debug info after client-side mount
   useEffect(() => {
@@ -111,7 +113,7 @@ export default function CartPage() {
                 {getTotalPrice().toFixed(2)}DH
               </span>
             </div>
-            <button className="w-full bg-black text-white py-3 rounded-md font-medium hover:bg-gray-800 transition-colors mt-4">
+            <button onClick={()=> route.push("/checkout")} className="w-full bg-black text-white py-3 rounded-md font-medium hover:bg-gray-800 transition-colors mt-4">
               Proceed to Checkout
             </button>
           </div>
